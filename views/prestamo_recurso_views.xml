@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="prestamo_recurso_view_list" model="ir.ui.view">
+        <field name="name">prestamo.recurso.list</field>
+        <field name="model">prestamo.recurso</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="tipo"/>
+                <field name="categoria_id"/>
+                <field name="area_id"/>
+                <field name="estado_fisico"/>
+                <field name="disponibilidad"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="prestamo_recurso_view_search" model="ir.ui.view">
+        <field name="name">prestamo.recurso.search</field>
+        <field name="model">prestamo.recurso</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="categoria_id"/>
+                <filter name="disponibles" string="Disponibles" domain="[('disponibilidad', '=', 'disponible')]"/>
+                <filter name="prestados" string="Prestados" domain="[('disponibilidad', '=', 'prestado')]"/>
+                <filter name="mantenimiento" string="En mantenimiento" domain="[('disponibilidad', '=', 'mantenimiento')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_tipo" string="Tipo" context="{'group_by': 'tipo'}"/>
+                    <filter name="group_categoria" string="Categoria" context="{'group_by': 'categoria_id'}"/>
+                    <filter name="group_area" string="Area" context="{'group_by': 'area_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="prestamo_recurso_view_form" model="ir.ui.view">
+        <field name="name">prestamo.recurso.form</field>
+        <field name="model">prestamo.recurso</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="codigo"/>
+                            <field name="name"/>
+                            <field name="tipo"/>
+                            <field name="categoria_id"/>
+                            <field name="area_id"/>
+                            <field name="estado_fisico"/>
+                            <field name="disponibilidad" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="ubicacion"/>
+                            <field name="active"/>
+                            <field name="autor" invisible="tipo != 'libro'"/>
+                            <field name="editorial" invisible="tipo != 'libro'"/>
+                            <field name="isbn" invisible="tipo != 'libro'"/>
+                            <field name="marca" invisible="tipo == 'libro'"/>
+                            <field name="modelo" invisible="tipo == 'libro'"/>
+                            <field name="nro_serie" invisible="tipo == 'libro'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Observaciones">
+                            <field name="observaciones"/>
+                        </page>
+                        <page string="Prestamos">
+                            <field name="prestamo_line_ids" readonly="1">
+                                <list>
+                                    <field name="prestamo_id"/>
+                                    <field name="estado_inicial"/>
+                                    <field name="estado_final"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Mantenimientos">
+                            <field name="mantenimiento_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="fecha_inicio"/>
+                                    <field name="fecha_fin"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="prestamo_recurso_action" model="ir.actions.act_window">
+        <field name="name">Recursos</field>
+        <field name="res_model">prestamo.recurso</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

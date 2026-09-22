@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="prestamos_universidad_menu_root"
+              name="Prestamos Universidad"
+              sequence="40"
+              groups="prestamos_universidad.group_prestamos_user"/>
+
+    <menuitem id="prestamos_universidad_menu_operaciones"
+              name="Operaciones"
+              parent="prestamos_universidad_menu_root"
+              sequence="10"/>
+
+    <menuitem id="prestamos_universidad_menu_prestamos"
+              name="Prestamos"
+              parent="prestamos_universidad_menu_operaciones"
+              action="prestamo_prestamo_action"
+              sequence="10"/>
+
+    <menuitem id="prestamos_universidad_menu_devoluciones"
+              name="Devoluciones y atrasos"
+              parent="prestamos_universidad_menu_operaciones"
+              action="prestamo_prestamo_action"
+              sequence="20"/>
+
+    <menuitem id="prestamos_universidad_menu_sanciones"
+              name="Sanciones"
+              parent="prestamos_universidad_menu_operaciones"
+              action="prestamo_sancion_action"
+              sequence="30"/>
+
+    <menuitem id="prestamos_universidad_menu_mantenimiento"
+              name="Mantenimiento"
+              parent="prestamos_universidad_menu_operaciones"
+              action="prestamo_mantenimiento_action"
+              sequence="40"/>
+
+    <menuitem id="prestamos_universidad_menu_catalogos"
+              name="Catalogos"
+              parent="prestamos_universidad_menu_root"
+              sequence="20"/>
+
+    <menuitem id="prestamos_universidad_menu_usuarios"
+              name="Usuarios / Perfiles"
+              parent="prestamos_universidad_menu_catalogos"
+              action="prestamo_usuario_action"
+              sequence="10"/>
+
+    <menuitem id="prestamos_universidad_menu_recursos"
+              name="Recursos"
+              parent="prestamos_universidad_menu_catalogos"
+              action="prestamo_recurso_action"
+              sequence="20"/>
+
+    <menuitem id="prestamos_universidad_menu_configuracion"
+              name="Configuracion"
+              parent="prestamos_universidad_menu_root"
+              sequence="30"
+              groups="prestamos_universidad.group_prestamos_manager"/>
+
+    <menuitem id="prestamos_universidad_menu_categorias"
+              name="Categorias"
+              parent="prestamos_universidad_menu_configuracion"
+              action="prestamo_categoria_action"
+              sequence="10"/>
+
+    <menuitem id="prestamos_universidad_menu_areas"
+              name="Areas responsables"
+              parent="prestamos_universidad_menu_configuracion"
+              action="prestamo_area_action"
+              sequence="20"/>
+</odoo>

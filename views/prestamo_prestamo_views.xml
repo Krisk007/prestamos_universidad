@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="prestamo_prestamo_view_list" model="ir.ui.view">
+        <field name="name">prestamo.prestamo.list</field>
+        <field name="model">prestamo.prestamo</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="prestatario_id"/>
+                <field name="area_id"/>
+                <field name="fecha_solicitud"/>
+                <field name="fecha_limite"/>
+                <field name="fecha_devolucion"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="prestamo_prestamo_view_search" model="ir.ui.view">
+        <field name="name">prestamo.prestamo.search</field>
+        <field name="model">prestamo.prestamo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="prestatario_id"/>
+                <field name="area_id"/>
+                <filter name="borrador" string="Borrador" domain="[('state', '=', 'borrador')]"/>
+                <filter name="entregados" string="Entregados" domain="[('state', 'in', ['entregado', 'atrasado'])]"/>
+                <filter name="atrasados" string="Atrasados" domain="[('state', '=', 'atrasado')]"/>
+                <filter name="devueltos" string="Devueltos" domain="[('state', '=', 'devuelto')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_estado" string="Estado" context="{'group_by': 'state'}"/>
+                    <filter name="group_area" string="Area" context="{'group_by': 'area_id'}"/>
+                    <filter name="group_prestatario" string="Usuario" context="{'group_by': 'prestatario_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="prestamo_prestamo_view_form" model="ir.ui.view">
+        <field name="name">prestamo.prestamo.form</field>
+        <field name="model">prestamo.prestamo</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirmar" type="object" string="Confirmar" class="btn-primary" invisible="state != 'borrador'"/>
+                    <button name="action_entregar" type="object" string="Entregar" class="btn-primary" invisible="state not in ['borrador', 'confirmado']"/>
+                    <button name="action_devolver" type="object" string="Registrar devolucion" class="btn-primary" invisible="state not in ['entregado', 'atrasado']"/>
+                    <button name="action_marcar_atrasado" type="object" string="Marcar atrasado" invisible="state != 'entregado'"/>
+                    <button name="action_cancelar" type="object" string="Cancelar" invisible="state in ['devuelto', 'cancelado']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="borrador,confirmado,entregado,devuelto"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="prestatario_id" domain="[('prestamo_perfil', '!=', False)]"/>
+                            <field name="area_id"/>
+                            <field name="fecha_solicitud"/>
+                        </group>
+                        <group>
+                            <field name="fecha_entrega" readonly="1"/>
+                            <field name="fecha_limite"/>
+                            <field name="fecha_devolucion" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detalle">
+                            <field name="line_ids" readonly="state in ['devuelto', 'cancelado']">
+                                <list editable="bottom">
+                                    <field name="recurso_id"/>
+                                    <field name="categoria_id" readonly="1"/>
+                                    <field name="area_id" readonly="1"/>
+                                    <field name="estado_inicial"/>
+                                    <field name="estado_final"/>
+                                    <field name="state" readonly="1"/>
+                                    <field name="observaciones"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Sanciones">
+                            <field name="sancion_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="prestatario_id"/>
+                                    <field name="tipo"/>
+                                    <field name="fecha"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Observaciones">
+                            <field name="observaciones"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="prestamo_prestamo_action" model="ir.actions.act_window">
+        <field name="name">Prestamos</field>
+        <field name="res_model">prestamo.prestamo</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

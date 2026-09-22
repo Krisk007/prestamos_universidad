@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="prestamo_sancion_view_list" model="ir.ui.view">
+        <field name="name">prestamo.sancion.list</field>
+        <field name="model">prestamo.sancion</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="fecha"/>
+                <field name="name"/>
+                <field name="prestatario_id"/>
+                <field name="prestamo_id"/>
+                <field name="tipo"/>
+                <field name="dias_sancion"/>
+                <field name="monto"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="prestamo_sancion_view_search" model="ir.ui.view">
+        <field name="name">prestamo.sancion.search</field>
+        <field name="model">prestamo.sancion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="prestatario_id"/>
+                <field name="prestamo_id"/>
+                <filter name="activas" string="Activas" domain="[('state', '=', 'activa')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_tipo" string="Tipo" context="{'group_by': 'tipo'}"/>
+                    <filter name="group_estado" string="Estado" context="{'group_by': 'state'}"/>
+                    <filter name="group_prestatario" string="Usuario" context="{'group_by': 'prestatario_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="prestamo_sancion_view_form" model="ir.ui.view">
+        <field name="name">prestamo.sancion.form</field>
+        <field name="model">prestamo.sancion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_cumplir" type="object" string="Marcar cumplida" class="btn-primary" invisible="state != 'activa'"/>
+                    <button name="action_cancelar" type="object" string="Cancelar" invisible="state != 'activa'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="activa,cumplida,cancelada"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="prestatario_id" domain="[('prestamo_perfil', '!=', False)]"/>
+                            <field name="prestamo_id"/>
+                            <field name="tipo"/>
+                            <field name="fecha"/>
+                        </group>
+                        <group>
+                            <field name="dias_sancion"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="monto"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="descripcion"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="prestamo_sancion_action" model="ir.actions.act_window">
+        <field name="name">Sanciones</field>
+        <field name="res_model">prestamo.sancion</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_activas': 1}</field>
+    </record>
+</odoo>

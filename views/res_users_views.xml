@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="prestamo_res_users_view_list" model="ir.ui.view">
+        <field name="name">res.users.prestamos.list</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="login"/>
+                <field name="prestamo_perfil"/>
+                <field name="prestamo_codigo"/>
+                <field name="prestamo_unidad"/>
+                <field name="prestamo_bloqueado"/>
+                <field name="prestamo_sanciones_activas"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="prestamo_res_users_view_search" model="ir.ui.view">
+        <field name="name">res.users.prestamos.search</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="login"/>
+                <field name="prestamo_codigo"/>
+                <field name="prestamo_documento"/>
+                <filter name="con_perfil" string="Con perfil" domain="[('prestamo_perfil', '!=', False)]"/>
+                <filter name="estudiantes" string="Estudiantes" domain="[('prestamo_perfil', '=', 'estudiante')]"/>
+                <filter name="docentes" string="Docentes" domain="[('prestamo_perfil', '=', 'docente')]"/>
+                <filter name="administradores" string="Administradores" domain="[('prestamo_perfil', '=', 'administrador')]"/>
+                <filter name="bloqueados" string="Bloqueados" domain="[('prestamo_bloqueado', '=', True)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_perfil" string="Perfil" context="{'group_by': 'prestamo_perfil'}"/>
+                    <filter name="group_bloqueado" string="Bloqueado" context="{'group_by': 'prestamo_bloqueado'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="prestamo_res_users_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.prestamos.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Prestamos Universidad" groups="prestamos_universidad.group_prestamos_user">
+                    <group>
+                        <group>
+                            <field name="prestamo_perfil"/>
+                            <field name="prestamo_codigo"/>
+                            <field name="prestamo_documento"/>
+                            <field name="prestamo_unidad"/>
+                            <field name="prestamo_telefono"/>
+                        </group>
+                        <group>
+                            <field name="prestamo_bloqueado"/>
+                            <field name="prestamo_motivo_bloqueo" invisible="not prestamo_bloqueado"/>
+                            <field name="prestamo_sanciones_activas" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Prestamos">
+                            <field name="prestamo_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="fecha_solicitud"/>
+                                    <field name="fecha_limite"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Sanciones">
+                            <field name="prestamo_sancion_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="tipo"/>
+                                    <field name="fecha"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="prestamo_usuario_action" model="ir.actions.act_window">
+        <field name="name">Usuarios / Perfiles</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="prestamo_res_users_view_list"/>
+        <field name="search_view_id" ref="prestamo_res_users_view_search"/>
+        <field name="context">{'search_default_con_perfil': 1}</field>
+    </record>
+</odoo>

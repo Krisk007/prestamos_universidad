@@ -3,7 +3,7 @@
     <menuitem id="prestamos_universidad_menu_root"
               name="Prestamos Universidad"
               sequence="40"
-              groups="prestamos_universidad.group_prestamos_user"/>
+              groups="prestamos_universidad.group_prestamos_estudiante,prestamos_universidad.group_prestamos_docente,prestamos_universidad.group_prestamos_manager"/>
 
     <menuitem id="prestamos_universidad_menu_operaciones"
               name="Operaciones"

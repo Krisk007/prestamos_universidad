@@ -3,7 +3,7 @@
     'version': '18.0.1.0',
     'category': 'Education',
     'summary': 'Registro y control de prestamos de equipos y libros universitarios.',
-    'author': 'Kristhian Ortiz',
+    'author': 'Kristhian Jose Ortiz Arteaga, Luis Fernando Cerruto Salas, Vicente Gerardo Aguilera Vera',
     'depends': ['base', 'mail'],
     'data': [
         'security/prestamos_universidad_security.xml',

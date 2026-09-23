@@ -44,7 +44,7 @@
         <field name="inherit_id" ref="base.view_users_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page string="Prestamos Universidad" groups="prestamos_universidad.group_prestamos_user">
+                <page string="Prestamos Universidad" groups="prestamos_universidad.group_prestamos_estudiante,prestamos_universidad.group_prestamos_docente,prestamos_universidad.group_prestamos_manager">
                     <group>
                         <group>
                             <field name="prestamo_perfil"/>

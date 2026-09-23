@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo>
     <record id="seq_prestamo_prestamo" model="ir.sequence">
         <field name="name">Prestamo universitario</field>
         <field name="code">prestamo.prestamo</field>
@@ -30,5 +30,156 @@
     <record id="categoria_proyectores" model="prestamo.categoria">
         <field name="name">Proyectores</field>
         <field name="tipo">equipo</field>
+    </record>
+
+    <record id="base.user_admin" model="res.users">
+        <field name="prestamo_perfil">administrador</field>
+        <field name="prestamo_codigo">ADM-001</field>
+        <field name="prestamo_unidad">Administracion del sistema</field>
+        <field name="groups_id" eval="[(4, ref('prestamos_universidad.group_prestamos_manager'))]"/>
+    </record>
+
+    <record id="user_gary_acero" model="res.users">
+        <field name="name">GARY MOISES ACERO CHOQUEHUANCA</field>
+        <field name="login">gary.acero@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-001</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_vicente_aguilera" model="res.users">
+        <field name="name">Vicente Gerardo Aguilera Vera</field>
+        <field name="login">vicente.aguilera@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-002</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_juan_blasquez" model="res.users">
+        <field name="name">JUAN PABLO BLASQUEZ NOGALES</field>
+        <field name="login">juan.blasquez@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-003</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_luis_cerruto" model="res.users">
+        <field name="name">LUIS FERNANDO CERRUTO SALAS</field>
+        <field name="login">luis.cerruto@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-004</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_neddy_choque" model="res.users">
+        <field name="name">Neddy Etman Choque Flores</field>
+        <field name="login">neddy.choque@usfa.edu.bo</field>
+        <field name="prestamo_perfil">docente</field>
+        <field name="prestamo_codigo">DOC-001</field>
+        <field name="prestamo_unidad">Docencia</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_docente'))]"/>
+    </record>
+
+    <record id="user_dora_davila" model="res.users">
+        <field name="name">DORA NATALIA DAVILA CARBALLO</field>
+        <field name="login">dora.davila@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-005</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_mauricio_diaz" model="res.users">
+        <field name="name">Mauricio Diaz Renteria</field>
+        <field name="login">mauricio.diaz@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-006</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_juan_fernandez" model="res.users">
+        <field name="name">JUAN FERNANDEZ ATTO</field>
+        <field name="login">juan.fernandez@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-007</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_freddy_mamani" model="res.users">
+        <field name="name">Freddy Mamani Mamani</field>
+        <field name="login">freddy.mamani@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-008</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_eduardo_orellana" model="res.users">
+        <field name="name">Eduardo Leonel Orellana Teran</field>
+        <field name="login">eduardo.orellana@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-009</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_kristhian_ortiz" model="res.users">
+        <field name="name">KRISTHIAN JOSE ORTIZ ARTEAGA</field>
+        <field name="login">kristhian.ortiz@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-010</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_erick_palacios" model="res.users">
+        <field name="name">Erick Ezequiel Palacios Montecinos</field>
+        <field name="login">erick.palacios@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-011</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_mauricio_prudencio" model="res.users">
+        <field name="name">MAURICIO EDUARDO PRUDENCIO MARTINEZ</field>
+        <field name="login">mauricio.prudencio@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-012</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_darwyn_vera" model="res.users">
+        <field name="name">DARWYN VERA MORALES</field>
+        <field name="login">darwyn.vera@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-013</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_cristian_yarby" model="res.users">
+        <field name="name">CRISTIAN OSVALDO YARBY REYNAGA</field>
+        <field name="login">cristian.yarby@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-014</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
+    </record>
+
+    <record id="user_laura_zuazo" model="res.users">
+        <field name="name">LAURA CAROLY ZUAZO MORALES</field>
+        <field name="login">laura.zuazo@usfa.edu.bo</field>
+        <field name="prestamo_perfil">estudiante</field>
+        <field name="prestamo_codigo">EST-015</field>
+        <field name="prestamo_unidad">Sistemas de Informacion</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('prestamos_universidad.group_prestamos_estudiante'))]"/>
     </record>
 </odoo>

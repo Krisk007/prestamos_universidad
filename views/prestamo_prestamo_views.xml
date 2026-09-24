@@ -43,11 +43,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_confirmar" type="object" string="Confirmar" class="btn-primary" invisible="state != 'borrador'"/>
-                    <button name="action_entregar" type="object" string="Entregar" class="btn-primary" invisible="state not in ['borrador', 'confirmado']"/>
-                    <button name="action_devolver" type="object" string="Registrar devolucion" class="btn-primary" invisible="state not in ['entregado', 'atrasado']"/>
-                    <button name="action_marcar_atrasado" type="object" string="Marcar atrasado" invisible="state != 'entregado'"/>
-                    <button name="action_cancelar" type="object" string="Cancelar" invisible="state in ['devuelto', 'cancelado']"/>
+                    <button name="action_confirmar" type="object" string="Confirmar" class="btn-primary" invisible="state != 'borrador'" groups="prestamos_universidad.group_prestamos_manager"/>
+                    <button name="action_entregar" type="object" string="Entregar" class="btn-primary" invisible="state not in ['borrador', 'confirmado']" groups="prestamos_universidad.group_prestamos_manager"/>
+                    <button name="action_devolver" type="object" string="Registrar devolucion" class="btn-primary" invisible="state not in ['entregado', 'atrasado']" groups="prestamos_universidad.group_prestamos_manager"/>
+                    <button name="action_marcar_atrasado" type="object" string="Marcar atrasado" invisible="state != 'entregado'" groups="prestamos_universidad.group_prestamos_manager"/>
+                    <button name="action_cancelar" type="object" string="Cancelar" invisible="state in ['devuelto', 'cancelado']" groups="prestamos_universidad.group_prestamos_manager"/>
                     <field name="state" widget="statusbar" statusbar_visible="borrador,confirmado,entregado,devuelto"/>
                 </header>
                 <sheet>

@@ -22,19 +22,22 @@
               name="Devoluciones y atrasos"
               parent="prestamos_universidad_menu_operaciones"
               action="prestamo_prestamo_action"
-              sequence="20"/>
+              sequence="20"
+              groups="prestamos_universidad.group_prestamos_manager"/>
 
     <menuitem id="prestamos_universidad_menu_sanciones"
               name="Sanciones"
               parent="prestamos_universidad_menu_operaciones"
               action="prestamo_sancion_action"
-              sequence="30"/>
+              sequence="30"
+              groups="prestamos_universidad.group_prestamos_estudiante,prestamos_universidad.group_prestamos_docente,prestamos_universidad.group_prestamos_manager"/>
 
     <menuitem id="prestamos_universidad_menu_mantenimiento"
               name="Mantenimiento"
               parent="prestamos_universidad_menu_operaciones"
               action="prestamo_mantenimiento_action"
-              sequence="40"/>
+              sequence="40"
+              groups="prestamos_universidad.group_prestamos_manager"/>
 
     <menuitem id="prestamos_universidad_menu_catalogos"
               name="Catalogos"
@@ -87,7 +90,8 @@
               name="Usuarios / Perfiles"
               parent="prestamos_universidad_menu_catalogos"
               action="prestamo_usuario_action"
-              sequence="10"/>
+              sequence="10"
+              groups="prestamos_universidad.group_prestamos_manager"/>
 
     <menuitem id="prestamos_universidad_menu_recursos"
               name="Recursos"

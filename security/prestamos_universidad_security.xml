@@ -24,4 +24,103 @@
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
+
+    <record id="rule_prestamo_estudiante_own" model="ir.rule">
+        <field name="name">Estudiante solo sus prestamos</field>
+        <field name="model_id" ref="model_prestamo_prestamo"/>
+        <field name="domain_force">[('prestatario_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_prestamos_estudiante'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_prestamo_docente_own" model="ir.rule">
+        <field name="name">Docente solo sus prestamos</field>
+        <field name="model_id" ref="model_prestamo_prestamo"/>
+        <field name="domain_force">[('prestatario_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_prestamos_docente'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_prestamo_manager_all" model="ir.rule">
+        <field name="name">Administrador todos los prestamos</field>
+        <field name="model_id" ref="model_prestamo_prestamo"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_prestamos_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="rule_prestamo_line_estudiante_own" model="ir.rule">
+        <field name="name">Estudiante solo lineas de sus prestamos</field>
+        <field name="model_id" ref="model_prestamo_prestamo_line"/>
+        <field name="domain_force">[('prestamo_id.prestatario_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_prestamos_estudiante'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="rule_prestamo_line_docente_own" model="ir.rule">
+        <field name="name">Docente solo lineas de sus prestamos</field>
+        <field name="model_id" ref="model_prestamo_prestamo_line"/>
+        <field name="domain_force">[('prestamo_id.prestatario_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_prestamos_docente'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="rule_prestamo_line_manager_all" model="ir.rule">
+        <field name="name">Administrador todas las lineas de prestamos</field>
+        <field name="model_id" ref="model_prestamo_prestamo_line"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_prestamos_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="rule_sancion_estudiante_own" model="ir.rule">
+        <field name="name">Estudiante solo sus sanciones</field>
+        <field name="model_id" ref="model_prestamo_sancion"/>
+        <field name="domain_force">[('prestatario_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_prestamos_estudiante'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_sancion_docente_own" model="ir.rule">
+        <field name="name">Docente solo sus sanciones</field>
+        <field name="model_id" ref="model_prestamo_sancion"/>
+        <field name="domain_force">[('prestatario_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_prestamos_docente'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_sancion_manager_all" model="ir.rule">
+        <field name="name">Administrador todas las sanciones</field>
+        <field name="model_id" ref="model_prestamo_sancion"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_prestamos_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
 </odoo>

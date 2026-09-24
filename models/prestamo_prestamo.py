@@ -13,6 +13,7 @@ class PrestamoPrestamo(models.Model):
         'res.users',
         string='Usuario',
         required=True,
+        default=lambda self: self.env.user,
         tracking=True,
         domain=[('prestamo_perfil', '!=', False)],
     )
@@ -45,7 +46,21 @@ class PrestamoPrestamo(models.Model):
         for vals in vals_list:
             if vals.get('name', 'Nuevo') == 'Nuevo':
                 vals['name'] = self.env['ir.sequence'].next_by_code('prestamo.prestamo') or 'Nuevo'
+            if not self.env.user.has_group('prestamos_universidad.group_prestamos_manager'):
+                vals['prestatario_id'] = self.env.user.id
         return super().create(vals_list)
+
+    def write(self, vals):
+        if not self.env.user.has_group('prestamos_universidad.group_prestamos_manager'):
+            if 'prestatario_id' in vals:
+                raise UserError('Solo el administrador puede cambiar el usuario de una solicitud de prestamo.')
+            if any(record.state != 'borrador' for record in self):
+                raise UserError('Solo puede modificar solicitudes en borrador. Una solicitud confirmada queda a cargo del administrador.')
+        return super().write(vals)
+
+    def _check_can_manage_operation(self):
+        if not self.env.user.has_group('prestamos_universidad.group_prestamos_manager'):
+            raise UserError('Solo el administrador puede confirmar, entregar, devolver o cancelar prestamos.')
 
     @api.depends('sancion_ids', 'sancion_ids.state')
     def _compute_sanciones_count(self):
@@ -74,10 +89,12 @@ class PrestamoPrestamo(models.Model):
             record.line_ids._check_resource_available()
 
     def action_confirmar(self):
+        self._check_can_manage_operation()
         self._check_can_confirm()
         self.write({'state': 'confirmado'})
 
     def action_entregar(self):
+        self._check_can_manage_operation()
         for record in self:
             record._check_can_confirm()
             fecha = fields.Datetime.now()
@@ -85,6 +102,7 @@ class PrestamoPrestamo(models.Model):
             record.line_ids.write({'state': 'entregado', 'fecha_entrega': fecha})
 
     def action_devolver(self):
+        self._check_can_manage_operation()
         for record in self:
             fecha = fields.Datetime.now()
             for line in record.line_ids.filtered(lambda l: l.state in ('entregado', 'atrasado')):
@@ -99,10 +117,12 @@ class PrestamoPrestamo(models.Model):
             record.write({'state': 'devuelto', 'fecha_devolucion': fecha})
 
     def action_cancelar(self):
+        self._check_can_manage_operation()
         self.write({'state': 'cancelado'})
         self.line_ids.filtered(lambda l: l.state not in ('devuelto', 'cancelado')).write({'state': 'cancelado'})
 
     def action_marcar_atrasado(self):
+        self._check_can_manage_operation()
         for record in self:
             if record.state == 'entregado':
                 record.write({'state': 'atrasado'})
@@ -176,6 +196,18 @@ class PrestamoPrestamoLine(models.Model):
         for line in self:
             if line.recurso_id:
                 line.estado_inicial = line.recurso_id.estado_fisico
+
+    def write(self, vals):
+        if not self.env.user.has_group('prestamos_universidad.group_prestamos_manager'):
+            if any(line.prestamo_id.state != 'borrador' for line in self):
+                raise UserError('Solo puede modificar el detalle de solicitudes en borrador.')
+        return super().write(vals)
+
+    def unlink(self):
+        if not self.env.user.has_group('prestamos_universidad.group_prestamos_manager'):
+            if any(line.prestamo_id.state != 'borrador' for line in self):
+                raise UserError('Solo puede quitar recursos de solicitudes en borrador.')
+        return super().unlink()
 
     @api.constrains('recurso_id', 'prestamo_id', 'state')
     def _check_recurso_unico_activo(self):

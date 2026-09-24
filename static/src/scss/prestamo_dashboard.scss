@@ -1,0 +1,137 @@
+.o_kanban_renderer.prestamos_dashboard_kanban,
+.o_kanban_renderer:has(.prestamos_dashboard_card) {
+    align-content: flex-start;
+    padding: 16px;
+
+    .o_kanban_record {
+        width: 100% !important;
+        max-width: none !important;
+        flex: 1 1 100% !important;
+        margin: 0 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        cursor: default !important;
+        pointer-events: none;
+    }
+}
+
+.prestamos_dashboard_card {
+    width: 100%;
+    min-height: calc(100vh - 180px);
+    padding: 24px;
+    border: 1px solid #d8dce5;
+    border-radius: 10px;
+    background: #f7f8fb;
+    pointer-events: auto;
+}
+
+.prestamos_dashboard_header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 20px;
+
+    h2 {
+        max-width: 760px;
+        margin: 0 0 4px;
+        font-size: 26px;
+        line-height: 1.2;
+        font-weight: 700;
+        white-space: normal;
+    }
+}
+
+.prestamos_header_button {
+    min-width: 170px;
+    white-space: normal;
+}
+
+.prestamos_metric_card {
+    display: block;
+    width: 100%;
+    min-height: 150px;
+    padding: 18px;
+    border: 1px solid #d8dce5;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #2f3747;
+    text-align: left;
+    white-space: normal;
+    box-shadow: 0 2px 8px rgba(20, 30, 50, 0.06);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+
+    &:hover {
+        border-color: #875a7b;
+        box-shadow: 0 6px 18px rgba(20, 30, 50, 0.12);
+        transform: translateY(-1px);
+    }
+
+    .fa {
+        flex: 0 0 auto;
+        margin-left: 8px;
+        font-size: 18px;
+    }
+
+    small {
+        display: block;
+        color: #6b7280;
+        line-height: 1.35;
+        white-space: normal;
+    }
+}
+
+.prestamos_metric_title {
+    min-width: 0;
+    color: #4b5563;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: normal;
+}
+
+.prestamos_metric_value {
+    margin: 12px 0 8px;
+    font-size: 40px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.prestamos_info_panel {
+    height: 100%;
+    padding: 18px;
+    border: 1px solid #d8dce5;
+    border-radius: 8px;
+    background: #ffffff;
+
+    h4 {
+        margin-bottom: 14px;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    p {
+        line-height: 1.45;
+    }
+}
+
+@media (max-width: 768px) {
+    .prestamos_dashboard_card {
+        min-height: auto;
+        padding: 16px;
+    }
+
+    .prestamos_dashboard_header {
+        display: block;
+
+        h2 {
+            font-size: 22px;
+        }
+    }
+
+    .prestamos_header_button {
+        width: 100%;
+        margin-top: 12px;
+    }
+}

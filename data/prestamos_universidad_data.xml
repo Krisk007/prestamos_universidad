@@ -7,6 +7,10 @@
         <field name="padding">5</field>
     </record>
 
+    <record id="prestamo_dashboard_main" model="prestamo.dashboard">
+        <field name="name">Dashboard de prestamos</field>
+    </record>
+
     <record id="area_biblioteca" model="prestamo.area">
         <field name="name">Biblioteca Central</field>
         <field name="ubicacion">Campus principal</field>
@@ -17,19 +21,363 @@
         <field name="ubicacion">Bloque Academico</field>
     </record>
 
+    <record id="area_audiovisuales" model="prestamo.area">
+        <field name="name">Unidad de Audiovisuales</field>
+        <field name="email">audiovisuales@usfa.edu.bo</field>
+        <field name="telefono">Interno 204</field>
+        <field name="ubicacion">Bloque Academico - Planta baja</field>
+    </record>
+
+    <record id="area_redes" model="prestamo.area">
+        <field name="name">Laboratorio de Redes</field>
+        <field name="email">redes@usfa.edu.bo</field>
+        <field name="telefono">Interno 218</field>
+        <field name="ubicacion">Bloque Tecnologico - Aula 3</field>
+    </record>
+
+    <record id="area_gabinete_computacion" model="prestamo.area">
+        <field name="name">Gabinete de Computacion</field>
+        <field name="email">gabinete.computacion@usfa.edu.bo</field>
+        <field name="telefono">Interno 212</field>
+        <field name="ubicacion">Bloque Academico - Piso 2</field>
+    </record>
+
+    <record id="area_electronica" model="prestamo.area">
+        <field name="name">Laboratorio de Electronica</field>
+        <field name="email">electronica@usfa.edu.bo</field>
+        <field name="telefono">Interno 225</field>
+        <field name="ubicacion">Bloque Tecnologico - Laboratorio 1</field>
+    </record>
+
+    <record id="area_almacen" model="prestamo.area">
+        <field name="name">Almacen Universitario</field>
+        <field name="email">almacen@usfa.edu.bo</field>
+        <field name="telefono">Interno 230</field>
+        <field name="ubicacion">Campus principal - Deposito central</field>
+    </record>
+
     <record id="categoria_libros" model="prestamo.categoria">
         <field name="name">Libros academicos</field>
         <field name="tipo">libro</field>
+        <field name="descripcion">Material bibliografico utilizado en asignaturas, investigacion y consulta academica.</field>
     </record>
 
     <record id="categoria_laptops" model="prestamo.categoria">
         <field name="name">Laptops</field>
         <field name="tipo">equipo</field>
+        <field name="descripcion">Equipos portatiles para clases, practicas, defensas y trabajo academico.</field>
     </record>
 
     <record id="categoria_proyectores" model="prestamo.categoria">
         <field name="name">Proyectores</field>
         <field name="tipo">equipo</field>
+        <field name="descripcion">Equipos de proyeccion para aulas, auditorios y exposiciones.</field>
+    </record>
+
+    <record id="categoria_tesis" model="prestamo.categoria">
+        <field name="name">Tesis y trabajos de grado</field>
+        <field name="tipo">libro</field>
+        <field name="descripcion">Documentos academicos producidos por estudiantes y egresados para consulta institucional.</field>
+    </record>
+
+    <record id="categoria_manuales" model="prestamo.categoria">
+        <field name="name">Manuales tecnicos</field>
+        <field name="tipo">libro</field>
+        <field name="descripcion">Manuales, guias y textos de apoyo tecnico para laboratorios y talleres.</field>
+    </record>
+
+    <record id="categoria_tablets" model="prestamo.categoria">
+        <field name="name">Tablets</field>
+        <field name="tipo">equipo</field>
+        <field name="descripcion">Dispositivos moviles para lectura, presentaciones y actividades academicas.</field>
+    </record>
+
+    <record id="categoria_camaras" model="prestamo.categoria">
+        <field name="name">Camaras y video</field>
+        <field name="tipo">equipo</field>
+        <field name="descripcion">Camaras, webcams y equipos de captura de imagen para clases y eventos.</field>
+    </record>
+
+    <record id="categoria_audio" model="prestamo.categoria">
+        <field name="name">Audio y sonido</field>
+        <field name="tipo">equipo</field>
+        <field name="descripcion">Microfonos, parlantes y equipos de apoyo audiovisual.</field>
+    </record>
+
+    <record id="categoria_redes" model="prestamo.categoria">
+        <field name="name">Equipos de redes</field>
+        <field name="tipo">equipo</field>
+        <field name="descripcion">Routers, switches y dispositivos para practicas de redes.</field>
+    </record>
+
+    <record id="categoria_electronica" model="prestamo.categoria">
+        <field name="name">Kits de electronica</field>
+        <field name="tipo">equipo</field>
+        <field name="descripcion">Kits de Arduino, Raspberry Pi, sensores y herramientas para practicas de laboratorio.</field>
+    </record>
+
+    <record id="categoria_accesorios" model="prestamo.categoria">
+        <field name="name">Accesorios de computo</field>
+        <field name="tipo">equipo</field>
+        <field name="descripcion">Adaptadores, cargadores, punteros, teclados, mouse y otros accesorios prestables.</field>
+    </record>
+
+    <record id="recurso_libro_ingenieria_software" model="prestamo.recurso">
+        <field name="codigo">LIB-SIS-001</field>
+        <field name="name">Ingenieria de Software</field>
+        <field name="tipo">libro</field>
+        <field name="categoria_id" ref="categoria_libros"/>
+        <field name="area_id" ref="area_biblioteca"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="autor">Ian Sommerville</field>
+        <field name="editorial">Pearson</field>
+        <field name="isbn">978-0133943030</field>
+        <field name="ubicacion">Biblioteca Central - Estante SIS-A1</field>
+    </record>
+
+    <record id="recurso_libro_bases_datos" model="prestamo.recurso">
+        <field name="codigo">LIB-SIS-002</field>
+        <field name="name">Sistemas de Bases de Datos</field>
+        <field name="tipo">libro</field>
+        <field name="categoria_id" ref="categoria_libros"/>
+        <field name="area_id" ref="area_biblioteca"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="autor">Ramez Elmasri y Shamkant B. Navathe</field>
+        <field name="editorial">Pearson</field>
+        <field name="isbn">978-0133970777</field>
+        <field name="ubicacion">Biblioteca Central - Estante SIS-A2</field>
+    </record>
+
+    <record id="recurso_libro_redes_computadoras" model="prestamo.recurso">
+        <field name="codigo">LIB-RED-001</field>
+        <field name="name">Redes de Computadoras</field>
+        <field name="tipo">libro</field>
+        <field name="categoria_id" ref="categoria_libros"/>
+        <field name="area_id" ref="area_biblioteca"/>
+        <field name="estado_fisico">regular</field>
+        <field name="autor">Andrew S. Tanenbaum</field>
+        <field name="editorial">Pearson</field>
+        <field name="isbn">978-0132126953</field>
+        <field name="ubicacion">Biblioteca Central - Estante RED-B1</field>
+        <field name="observaciones">Ejemplar con desgaste leve en tapa, apto para prestamo.</field>
+    </record>
+
+    <record id="recurso_libro_metodologia" model="prestamo.recurso">
+        <field name="codigo">LIB-INV-001</field>
+        <field name="name">Metodologia de la Investigacion</field>
+        <field name="tipo">libro</field>
+        <field name="categoria_id" ref="categoria_libros"/>
+        <field name="area_id" ref="area_biblioteca"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="autor">Roberto Hernandez Sampieri</field>
+        <field name="editorial">McGraw-Hill</field>
+        <field name="ubicacion">Biblioteca Central - Estante INV-C1</field>
+    </record>
+
+    <record id="recurso_tesis_sistemas_2024" model="prestamo.recurso">
+        <field name="codigo">TES-SIS-2024-001</field>
+        <field name="name">Tesis de Sistemas de Informacion 2024</field>
+        <field name="tipo">libro</field>
+        <field name="categoria_id" ref="categoria_tesis"/>
+        <field name="area_id" ref="area_biblioteca"/>
+        <field name="estado_fisico">nuevo</field>
+        <field name="autor">Repositorio Academico USFA</field>
+        <field name="ubicacion">Biblioteca Central - Repositorio de tesis</field>
+        <field name="observaciones">Material de consulta interna.</field>
+    </record>
+
+    <record id="recurso_manual_odoo" model="prestamo.recurso">
+        <field name="codigo">MAN-ERP-001</field>
+        <field name="name">Manual de Odoo ERP para Gestion Universitaria</field>
+        <field name="tipo">libro</field>
+        <field name="categoria_id" ref="categoria_manuales"/>
+        <field name="area_id" ref="area_laboratorio"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="autor">Equipo academico de Sistemas</field>
+        <field name="ubicacion">Laboratorio de Sistemas - Biblioteca tecnica</field>
+    </record>
+
+    <record id="recurso_laptop_lenovo_e14" model="prestamo.recurso">
+        <field name="codigo">EQ-LAP-001</field>
+        <field name="name">Laptop Lenovo ThinkPad E14</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_laptops"/>
+        <field name="area_id" ref="area_gabinete_computacion"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">Lenovo</field>
+        <field name="modelo">ThinkPad E14</field>
+        <field name="nro_serie">LNV-E14-USFA-001</field>
+        <field name="ubicacion">Gabinete de Computacion - Armario 1</field>
+    </record>
+
+    <record id="recurso_laptop_hp_probook" model="prestamo.recurso">
+        <field name="codigo">EQ-LAP-002</field>
+        <field name="name">Laptop HP ProBook 440</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_laptops"/>
+        <field name="area_id" ref="area_gabinete_computacion"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">HP</field>
+        <field name="modelo">ProBook 440</field>
+        <field name="nro_serie">HP-PB440-USFA-002</field>
+        <field name="ubicacion">Gabinete de Computacion - Armario 1</field>
+    </record>
+
+    <record id="recurso_tablet_samsung_tab" model="prestamo.recurso">
+        <field name="codigo">EQ-TAB-001</field>
+        <field name="name">Tablet Samsung Galaxy Tab</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_tablets"/>
+        <field name="area_id" ref="area_gabinete_computacion"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">Samsung</field>
+        <field name="modelo">Galaxy Tab A8</field>
+        <field name="nro_serie">SM-TAB-USFA-001</field>
+        <field name="ubicacion">Gabinete de Computacion - Armario 2</field>
+    </record>
+
+    <record id="recurso_proyector_epson" model="prestamo.recurso">
+        <field name="codigo">EQ-PRO-001</field>
+        <field name="name">Proyector Epson PowerLite</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_proyectores"/>
+        <field name="area_id" ref="area_audiovisuales"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">Epson</field>
+        <field name="modelo">PowerLite X49</field>
+        <field name="nro_serie">EPS-X49-USFA-001</field>
+        <field name="ubicacion">Unidad de Audiovisuales - Estante P1</field>
+    </record>
+
+    <record id="recurso_proyector_benq" model="prestamo.recurso">
+        <field name="codigo">EQ-PRO-002</field>
+        <field name="name">Proyector BenQ MS550</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_proyectores"/>
+        <field name="area_id" ref="area_audiovisuales"/>
+        <field name="estado_fisico">regular</field>
+        <field name="marca">BenQ</field>
+        <field name="modelo">MS550</field>
+        <field name="nro_serie">BNQ-MS550-USFA-002</field>
+        <field name="ubicacion">Unidad de Audiovisuales - Estante P1</field>
+        <field name="observaciones">Revisar cable VGA antes de cada prestamo.</field>
+    </record>
+
+    <record id="recurso_camara_canon" model="prestamo.recurso">
+        <field name="codigo">EQ-CAM-001</field>
+        <field name="name">Camara Canon EOS Rebel</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_camaras"/>
+        <field name="area_id" ref="area_audiovisuales"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">Canon</field>
+        <field name="modelo">EOS Rebel T7</field>
+        <field name="nro_serie">CAN-T7-USFA-001</field>
+        <field name="ubicacion">Unidad de Audiovisuales - Gabinete C1</field>
+    </record>
+
+    <record id="recurso_webcam_logitech" model="prestamo.recurso">
+        <field name="codigo">EQ-CAM-002</field>
+        <field name="name">Camara web Logitech C920</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_camaras"/>
+        <field name="area_id" ref="area_audiovisuales"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">Logitech</field>
+        <field name="modelo">C920</field>
+        <field name="nro_serie">LOG-C920-USFA-002</field>
+        <field name="ubicacion">Unidad de Audiovisuales - Gabinete C1</field>
+    </record>
+
+    <record id="recurso_microfono_boya" model="prestamo.recurso">
+        <field name="codigo">EQ-AUD-001</field>
+        <field name="name">Microfono inalambrico Boya</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_audio"/>
+        <field name="area_id" ref="area_audiovisuales"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">Boya</field>
+        <field name="modelo">BY-WM4 Pro</field>
+        <field name="nro_serie">BOYA-WM4-USFA-001</field>
+        <field name="ubicacion">Unidad de Audiovisuales - Caja de audio 1</field>
+    </record>
+
+    <record id="recurso_router_mikrotik" model="prestamo.recurso">
+        <field name="codigo">EQ-RED-001</field>
+        <field name="name">Router MikroTik hAP ac2</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_redes"/>
+        <field name="area_id" ref="area_redes"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">MikroTik</field>
+        <field name="modelo">hAP ac2</field>
+        <field name="nro_serie">MTK-HAP-USFA-001</field>
+        <field name="ubicacion">Laboratorio de Redes - Rack de practicas</field>
+    </record>
+
+    <record id="recurso_switch_tplink" model="prestamo.recurso">
+        <field name="codigo">EQ-RED-002</field>
+        <field name="name">Switch TP-Link 24 puertos</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_redes"/>
+        <field name="area_id" ref="area_redes"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">TP-Link</field>
+        <field name="modelo">TL-SG1024D</field>
+        <field name="nro_serie">TPL-24P-USFA-001</field>
+        <field name="ubicacion">Laboratorio de Redes - Rack de practicas</field>
+    </record>
+
+    <record id="recurso_kit_arduino" model="prestamo.recurso">
+        <field name="codigo">EQ-ELE-001</field>
+        <field name="name">Kit Arduino Uno con sensores</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_electronica"/>
+        <field name="area_id" ref="area_electronica"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">Arduino</field>
+        <field name="modelo">Uno R3 Starter Kit</field>
+        <field name="nro_serie">ARD-UNO-USFA-001</field>
+        <field name="ubicacion">Laboratorio de Electronica - Caja K1</field>
+    </record>
+
+    <record id="recurso_multimetro_digital" model="prestamo.recurso">
+        <field name="codigo">EQ-ELE-002</field>
+        <field name="name">Multimetro digital de laboratorio</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_electronica"/>
+        <field name="area_id" ref="area_electronica"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">UNI-T</field>
+        <field name="modelo">UT33D</field>
+        <field name="nro_serie">UNT-33D-USFA-001</field>
+        <field name="ubicacion">Laboratorio de Electronica - Caja H1</field>
+    </record>
+
+    <record id="recurso_adaptador_usb_c_hdmi" model="prestamo.recurso">
+        <field name="codigo">EQ-ACC-001</field>
+        <field name="name">Adaptador USB-C a HDMI</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_accesorios"/>
+        <field name="area_id" ref="area_almacen"/>
+        <field name="estado_fisico">nuevo</field>
+        <field name="marca">UGREEN</field>
+        <field name="modelo">USB-C HDMI</field>
+        <field name="nro_serie">UGR-HDMI-USFA-001</field>
+        <field name="ubicacion">Almacen Universitario - Caja de accesorios</field>
+    </record>
+
+    <record id="recurso_puntero_laser" model="prestamo.recurso">
+        <field name="codigo">EQ-ACC-002</field>
+        <field name="name">Puntero laser para presentaciones</field>
+        <field name="tipo">equipo</field>
+        <field name="categoria_id" ref="categoria_accesorios"/>
+        <field name="area_id" ref="area_almacen"/>
+        <field name="estado_fisico">bueno</field>
+        <field name="marca">Logitech</field>
+        <field name="modelo">R400</field>
+        <field name="nro_serie">LOG-R400-USFA-001</field>
+        <field name="ubicacion">Almacen Universitario - Caja de accesorios</field>
     </record>
 
     <record id="base.user_admin" model="res.users">

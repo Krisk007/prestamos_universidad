@@ -2,6 +2,8 @@
 <odoo>
     <menuitem id="prestamos_universidad_menu_root"
               name="Prestamos Universidad"
+              web_icon="prestamos_universidad,static/description/icon.png"
+              action="prestamo_dashboard_action"
               sequence="40"
               groups="prestamos_universidad.group_prestamos_estudiante,prestamos_universidad.group_prestamos_docente,prestamos_universidad.group_prestamos_manager"/>
 
@@ -38,6 +40,48 @@
               name="Catalogos"
               parent="prestamos_universidad_menu_root"
               sequence="20"/>
+
+    <menuitem id="prestamos_universidad_menu_reportes"
+              name="Reportes"
+              parent="prestamos_universidad_menu_root"
+              sequence="25"
+              groups="prestamos_universidad.group_prestamos_manager"/>
+
+    <menuitem id="prestamos_universidad_menu_dashboard"
+              name="Dashboard"
+              parent="prestamos_universidad_menu_reportes"
+              action="prestamo_dashboard_action"
+              sequence="5"/>
+
+    <menuitem id="prestamos_universidad_menu_reporte_prestamos_activos"
+              name="Prestamos activos"
+              parent="prestamos_universidad_menu_reportes"
+              action="prestamo_reporte_prestamos_activos_action"
+              sequence="10"/>
+
+    <menuitem id="prestamos_universidad_menu_reporte_prestamos_atrasados"
+              name="Prestamos atrasados"
+              parent="prestamos_universidad_menu_reportes"
+              action="prestamo_reporte_prestamos_atrasados_action"
+              sequence="20"/>
+
+    <menuitem id="prestamos_universidad_menu_reporte_recursos_mas_prestados"
+              name="Recursos mas prestados"
+              parent="prestamos_universidad_menu_reportes"
+              action="prestamo_reporte_recursos_mas_prestados_action"
+              sequence="30"/>
+
+    <menuitem id="prestamos_universidad_menu_reporte_disponibilidad"
+              name="Disponibilidad de recursos"
+              parent="prestamos_universidad_menu_reportes"
+              action="prestamo_reporte_disponibilidad_action"
+              sequence="40"/>
+
+    <menuitem id="prestamos_universidad_menu_reporte_sanciones_pendientes"
+              name="Sanciones pendientes"
+              parent="prestamos_universidad_menu_reportes"
+              action="prestamo_reporte_sanciones_pendientes_action"
+              sequence="50"/>
 
     <menuitem id="prestamos_universidad_menu_usuarios"
               name="Usuarios / Perfiles"

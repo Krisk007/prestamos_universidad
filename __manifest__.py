@@ -16,8 +16,14 @@
         'views/prestamo_recurso_views.xml',
         'views/prestamo_prestamo_views.xml',
         'views/prestamo_mantenimiento_views.xml',
+        'views/prestamo_reportes_views.xml',
         'views/prestamos_universidad_menus.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'prestamos_universidad/static/src/scss/prestamo_dashboard.scss',
+        ],
+    },
     'license': 'LGPL-3',
     'installable': True,
     'application': True,

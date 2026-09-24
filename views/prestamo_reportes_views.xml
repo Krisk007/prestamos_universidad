@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="prestamo_dashboard_view_kanban" model="ir.ui.view">
+        <field name="name">prestamo.dashboard.kanban</field>
+        <field name="model">prestamo.dashboard</field>
+        <field name="arch" type="xml">
+            <kanban create="0" edit="0" delete="0" class="o_kanban_dashboard prestamos_dashboard_kanban">
+                <field name="recursos_total"/>
+                <field name="recursos_disponibles"/>
+                <field name="recursos_prestados"/>
+                <field name="recursos_mantenimiento"/>
+                <field name="prestamos_activos"/>
+                <field name="prestamos_vencidos"/>
+                <field name="sanciones_pendientes"/>
+                <field name="usuarios_con_prestamos"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="prestamos_dashboard_card oe_kanban_action">
+                            <div class="prestamos_dashboard_header">
+                                <div>
+                                    <h2 class="mb-1">Dashboard de prestamos universitarios</h2>
+                                    <span class="text-muted">Resumen operativo del sistema de control de prestamos USFA</span>
+                                </div>
+                                <button name="action_open_prestamos_activos" type="object" class="btn btn-primary prestamos_header_button">
+                                    Ver prestamos activos
+                                </button>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <button name="action_open_recursos" type="object" class="prestamos_metric_card">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="prestamos_metric_title">Total recursos</span>
+                                            <i class="fa fa-cubes text-primary"/>
+                                        </div>
+                                        <div class="prestamos_metric_value"><field name="recursos_total"/></div>
+                                        <small>Inventario registrado</small>
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <button name="action_open_recursos_disponibles" type="object" class="prestamos_metric_card">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="prestamos_metric_title">Disponibles</span>
+                                            <i class="fa fa-check-circle text-success"/>
+                                        </div>
+                                        <div class="prestamos_metric_value text-success"><field name="recursos_disponibles"/></div>
+                                        <small>Listos para prestamo</small>
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <button name="action_open_recursos_prestados" type="object" class="prestamos_metric_card">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="prestamos_metric_title">Prestados</span>
+                                            <i class="fa fa-handshake-o text-info"/>
+                                        </div>
+                                        <div class="prestamos_metric_value text-info"><field name="recursos_prestados"/></div>
+                                        <small>Actualmente entregados</small>
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <button name="action_open_mantenimiento" type="object" class="prestamos_metric_card">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="prestamos_metric_title">Mantenimiento</span>
+                                            <i class="fa fa-wrench text-warning"/>
+                                        </div>
+                                        <div class="prestamos_metric_value text-warning"><field name="recursos_mantenimiento"/></div>
+                                        <small>Fuera de prestamo temporal</small>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-1">
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <button name="action_open_prestamos_activos" type="object" class="prestamos_metric_card">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="prestamos_metric_title">Prestamos activos</span>
+                                            <i class="fa fa-book text-primary"/>
+                                        </div>
+                                        <div class="prestamos_metric_value"><field name="prestamos_activos"/></div>
+                                        <small>Confirmados o entregados</small>
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <button name="action_open_prestamos_vencidos" type="object" class="prestamos_metric_card">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="prestamos_metric_title">Vencidos</span>
+                                            <i class="fa fa-clock-o text-danger"/>
+                                        </div>
+                                        <div class="prestamos_metric_value text-danger"><field name="prestamos_vencidos"/></div>
+                                        <small>Requieren seguimiento</small>
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <button name="action_open_sanciones" type="object" class="prestamos_metric_card">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="prestamos_metric_title">Sanciones</span>
+                                            <i class="fa fa-exclamation-triangle text-danger"/>
+                                        </div>
+                                        <div class="prestamos_metric_value text-danger"><field name="sanciones_pendientes"/></div>
+                                        <small>Pendientes o activas</small>
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <button name="action_open_usuarios_con_prestamos" type="object" class="prestamos_metric_card">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="prestamos_metric_title">Usuarios</span>
+                                            <i class="fa fa-users text-secondary"/>
+                                        </div>
+                                        <div class="prestamos_metric_value"><field name="usuarios_con_prestamos"/></div>
+                                        <small>Con historial de prestamos</small>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-3">
+                                <div class="col-12 col-lg-6">
+                                    <div class="prestamos_info_panel">
+                                        <h4 class="mb-3">Reportes principales</h4>
+                                        <div class="d-grid gap-2">
+                                            <button name="action_open_prestamos_activos" type="object" class="btn btn-outline-primary text-start">
+                                                <i class="fa fa-book me-2"/> Prestamos activos
+                                            </button>
+                                            <button name="action_open_prestamos_vencidos" type="object" class="btn btn-outline-danger text-start">
+                                                <i class="fa fa-clock-o me-2"/> Prestamos atrasados
+                                            </button>
+                                            <button name="action_open_recursos_disponibles" type="object" class="btn btn-outline-success text-start">
+                                                <i class="fa fa-check-circle me-2"/> Disponibilidad de recursos
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="prestamos_info_panel">
+                                        <h4 class="mb-3">Lectura rapida</h4>
+                                        <p class="mb-2">
+                                            El tablero resume la disponibilidad del inventario, prestamos en curso, atrasos y sanciones.
+                                        </p>
+                                        <p class="mb-0 text-muted">
+                                            Las tarjetas son accesos directos: al hacer clic abren el reporte filtrado correspondiente.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="prestamo_dashboard_view_form" model="ir.ui.view">
+        <field name="name">prestamo.dashboard.form</field>
+        <field name="model">prestamo.dashboard</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Dashboard de prestamos universitarios</h1>
+                    </div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_recursos" type="object" class="oe_stat_button" icon="fa-cubes">
+                            <field name="recursos_total" widget="statinfo" string="Total recursos"/>
+                        </button>
+                        <button name="action_open_recursos_disponibles" type="object" class="oe_stat_button" icon="fa-check-circle">
+                            <field name="recursos_disponibles" widget="statinfo" string="Disponibles"/>
+                        </button>
+                        <button name="action_open_recursos_prestados" type="object" class="oe_stat_button" icon="fa-handshake-o">
+                            <field name="recursos_prestados" widget="statinfo" string="Prestados"/>
+                        </button>
+                        <button name="action_open_mantenimiento" type="object" class="oe_stat_button" icon="fa-wrench">
+                            <field name="recursos_mantenimiento" widget="statinfo" string="Mantenimiento"/>
+                        </button>
+                        <button name="action_open_prestamos_activos" type="object" class="oe_stat_button" icon="fa-book">
+                            <field name="prestamos_activos" widget="statinfo" string="Prestamos activos"/>
+                        </button>
+                        <button name="action_open_prestamos_vencidos" type="object" class="oe_stat_button" icon="fa-clock-o">
+                            <field name="prestamos_vencidos" widget="statinfo" string="Prestamos vencidos"/>
+                        </button>
+                        <button name="action_open_sanciones" type="object" class="oe_stat_button" icon="fa-exclamation-triangle">
+                            <field name="sanciones_pendientes" widget="statinfo" string="Sanciones pendientes"/>
+                        </button>
+                        <button name="action_open_usuarios_con_prestamos" type="object" class="oe_stat_button" icon="fa-users">
+                            <field name="usuarios_con_prestamos" widget="statinfo" string="Usuarios con prestamos"/>
+                        </button>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="prestamo_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">prestamo.dashboard</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="domain" eval="[('id', '=', ref('prestamo_dashboard_main'))]"/>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'kanban', 'view_id': ref('prestamos_universidad.prestamo_dashboard_view_kanban')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('prestamos_universidad.prestamo_dashboard_view_form')})
+        ]"/>
+    </record>
+
+    <record id="prestamo_prestamo_view_pivot" model="ir.ui.view">
+        <field name="name">prestamo.prestamo.pivot</field>
+        <field name="model">prestamo.prestamo</field>
+        <field name="arch" type="xml">
+            <pivot string="Prestamos por estado y area">
+                <field name="state" type="col"/>
+                <field name="area_id" type="row"/>
+                <field name="prestatario_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="prestamo_prestamo_view_graph" model="ir.ui.view">
+        <field name="name">prestamo.prestamo.graph</field>
+        <field name="model">prestamo.prestamo</field>
+        <field name="arch" type="xml">
+            <graph string="Prestamos por estado" type="bar">
+                <field name="state"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="prestamo_recurso_view_pivot" model="ir.ui.view">
+        <field name="name">prestamo.recurso.pivot</field>
+        <field name="model">prestamo.recurso</field>
+        <field name="arch" type="xml">
+            <pivot string="Disponibilidad de recursos">
+                <field name="disponibilidad" type="col"/>
+                <field name="categoria_id" type="row"/>
+                <field name="area_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="prestamo_recurso_view_graph" model="ir.ui.view">
+        <field name="name">prestamo.recurso.graph</field>
+        <field name="model">prestamo.recurso</field>
+        <field name="arch" type="xml">
+            <graph string="Disponibilidad de recursos" type="bar">
+                <field name="disponibilidad"/>
+                <field name="categoria_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="prestamo_line_view_list_report" model="ir.ui.view">
+        <field name="name">prestamo.prestamo.line.report.list</field>
+        <field name="model">prestamo.prestamo.line</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0">
+                <field name="recurso_id"/>
+                <field name="categoria_id"/>
+                <field name="area_id"/>
+                <field name="prestamo_id"/>
+                <field name="fecha_entrega"/>
+                <field name="fecha_devolucion"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="prestamo_line_view_pivot_report" model="ir.ui.view">
+        <field name="name">prestamo.prestamo.line.report.pivot</field>
+        <field name="model">prestamo.prestamo.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Recursos mas prestados">
+                <field name="recurso_id" type="row"/>
+                <field name="categoria_id" type="row"/>
+                <field name="area_id" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="prestamo_line_view_graph_report" model="ir.ui.view">
+        <field name="name">prestamo.prestamo.line.report.graph</field>
+        <field name="model">prestamo.prestamo.line</field>
+        <field name="arch" type="xml">
+            <graph string="Recursos mas prestados" type="bar">
+                <field name="recurso_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="prestamo_reporte_prestamos_activos_action" model="ir.actions.act_window">
+        <field name="name">Prestamos activos</field>
+        <field name="res_model">prestamo.prestamo</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+        <field name="domain">[('state', 'in', ['confirmado', 'entregado'])]</field>
+        <field name="context">{'group_by': 'area_id'}</field>
+    </record>
+
+    <record id="prestamo_reporte_prestamos_atrasados_action" model="ir.actions.act_window">
+        <field name="name">Prestamos atrasados</field>
+        <field name="res_model">prestamo.prestamo</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+        <field name="domain">[('state', '=', 'atrasado')]</field>
+        <field name="context">{'group_by': 'prestatario_id'}</field>
+    </record>
+
+    <record id="prestamo_reporte_recursos_mas_prestados_action" model="ir.actions.act_window">
+        <field name="name">Recursos mas prestados</field>
+        <field name="res_model">prestamo.prestamo.line</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="domain">[('state', 'in', ['entregado', 'devuelto', 'atrasado'])]</field>
+    </record>
+
+    <record id="prestamo_reporte_disponibilidad_action" model="ir.actions.act_window">
+        <field name="name">Disponibilidad de recursos</field>
+        <field name="res_model">prestamo.recurso</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+        <field name="context">{'group_by': 'disponibilidad'}</field>
+    </record>
+
+    <record id="prestamo_reporte_sanciones_pendientes_action" model="ir.actions.act_window">
+        <field name="name">Sanciones pendientes</field>
+        <field name="res_model">prestamo.sancion</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', '=', 'activa')]</field>
+        <field name="context">{'group_by': 'tipo'}</field>
+    </record>
+</odoo>

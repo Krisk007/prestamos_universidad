@@ -5,3 +5,4 @@ from . import prestamo_recurso
 from . import prestamo_prestamo
 from . import prestamo_sancion
 from . import prestamo_mantenimiento
+from . import prestamo_dashboard
